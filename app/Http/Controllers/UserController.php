@@ -11,10 +11,7 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        
-    }
+    public function index() {}
 
     /**
      * Show the form for creating a new resource.
@@ -29,31 +26,29 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->has('role') && $request->role=='medcin' ){
-            dd('tester');
+        if ($request->has('role') && $request->role == 'medecin') {
             $request->validate([
-                'nom'=>'required|string',
-                'email'=>'required|email',
-                'mote_de_passe'=>'required|password',
-                'spacialitee'=>'required|string',
-                'diplome'=>'required|file|mimes:pdf',
-                'experiance'=>'required|string',
-                'photo'=>'required|file|mimes:jpg,png,jpeg',     
+                'nom' => 'required|string',
+                'email' => 'required|email',
+                'mote_de_passe' => 'required|password',
+                'spacialitee' => 'required|string',
+                'diplome' => 'required|file|mimes:pdf',
+                'experiance' => 'required|string',
+                'photo' => 'required|file|mimes:jpg,png,jpeg',
             ]);
 
-            $medcin=new Medecin();
-            $medcin->nom=$request->nom;
-            $medcin->email=$request->email;
-            $medcin->mote_de_passe=$request->mote_de_passe;
-            $medcin->spacialitee=$request->spacialitee;
-            $medcin->diplome=$request->diplome;
-            $medcin->photo=$request->photo;
-            $medcin->experiance=$request->experiance;
+            $medcin = new Medecin();
+            $medcin->nom = $request->nom;
+            $medcin->email = $request->email;
+            $medcin->mote_de_passe = $request->mote_de_passe;
+            $medcin->spacialitee = $request->spacialitee;
+            $medcin->diplome = $request->diplome;
+            $medcin->photo = $request->photo;
+            $medcin->experiance = $request->experiance;
             $medcin->save();
-                 return redirect('')->route('accueil')->with('success', 'message envoyee avec succès'); 
-    
+            return redirect()->route('accueil')->with('success', 'message envoyee avec succès');
         }
-        
+        return "machi fost if";
     }
 
     /**
