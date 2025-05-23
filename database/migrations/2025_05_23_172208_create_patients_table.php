@@ -15,12 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string("nom");
             $table->string("email");
+            $table->string("photo")->nullable();
             $table->enum('genre', ['F', 'M']);
+            $table->string("mote_de_passe");
             $table->date("date_de_naissance");
             $table->string("ville");
-
-            $table->string("is_patient");
-
             $table->timestamps();
         });
     }

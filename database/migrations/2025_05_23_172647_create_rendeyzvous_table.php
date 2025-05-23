@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->datetime("date_heure");
             $table->enum("statut",['annuler','confirmer']);
-            $table->foreignId("medcin_id")->constrained("medecin");
+            $table->foreignId("medcin_id")->constrained("medecins");
             $table->foreignId("patient_id")->constrained("patients");
             $table->timestamps();
         });
