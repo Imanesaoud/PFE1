@@ -3,7 +3,21 @@
 @section('content')
 <div class="container mt-5">
     <h2 class="mb-4">Créer un compte pour un rendez-vous</h2>
-    <form action="{{ route('rendezvous.store') }}" method="POST" enctype="multipart/form-data">
+       @if ($errors->any()) 
+ 
+        <div class="alert alert-danger"> 
+ 
+            <ul> 
+                @foreach ($errors->all() as $error) 
+                    <li>{{ $error }}</li> 
+                @endforeach 
+ 
+            </ul> 
+ 
+        </div> 
+ 
+    @endif
+    <form action="{{route('rendezvous.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="row">
@@ -21,7 +35,7 @@
         <input type="email" name="email" class="form-control" required>
 
         <label class="mt-3">Mot de passe:</label>
-        <input type="password" name="password" class="form-control" required>
+        <input type="password" name="mot_de_passe" class="form-control" required>
 
         <label class="mt-3">Photo:</label>
         <input type="file" name="photo" class="form-control">
@@ -30,7 +44,7 @@
         <select name="role" id="role" class="form-select" required onchange="toggleMedecinFields()">
             <option value="patient">Patient</option>
             <option value="medecin">Médecin</option>
-            <option value="admin">Admin</option>
+            
         </select>
 
         <div id="medecinFields" style="display: none;">
@@ -39,7 +53,14 @@
 
             <label class="mt-3">Horaires disponibles:</label>
             <input type="text" name="horaires" class="form-control" placeholder="Ex: Lundi à Vendredi, 9h-17h">
-
+ <select name="spacialitee" id="" class="form-select" required>
+            <option value="Pédiatrie">Pédiatrie</option>   
+            <option value="Médecine Générale">Médecine Générale</option>    
+            <option value="Gynécologie">Gynécologie</option>    
+            <option value="Cardiologie">Cardiologie</option>    
+            <option value="Dermatologie">Dermatologie</option>    
+            <option value="Ophtalmologie">Ophtalmologie</option>       
+        </select>
             <label class="mt-3">Expériences:</label>
             <textarea name="experience" class="form-control" rows="4"></textarea>
         </div>

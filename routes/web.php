@@ -3,10 +3,7 @@
 use App\Http\Controllers\ProfilMedecinController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RendezVousController;
-
-
-
-
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,12 +15,9 @@ use App\Http\Controllers\RendezVousController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', function () {
-    return view('accueil');
-});
-Route::get('/rendezvous', [RendezVousController::class, 'create'])->name('rendezvous.create');
-Route::post('/rendezvous', [RendezVousController::class, 'store'])->name('rendezvous.store');
+Route::get('/', function () {return view('accueil');})->name('accueil');
+Route::post('/rendezvous', [UserController::class, 'store'])->name('rendezvous.store');
 Route::get('/success', [RendezVousController::class, 'success'])->name('rendezvous.success');
-
-Route::get('/profil/{id}', [ProfilMedecinController::class, 'show'])->name('profil.medecin');
+Route::get('/ajouter',[RendezVousController::class,'create'])->name('ajouter');
+// Route::get('/profil/{id}', [ProfilMedecinController::class, 'show'])->name('profil.medecin');
 
