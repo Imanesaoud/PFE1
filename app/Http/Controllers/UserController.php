@@ -59,7 +59,7 @@ class UserController extends Controller
                 'email' => 'required|email',
                 'mote_de_passe' => 'required',
                 'ville' => 'required',
-                'date_de_naissance'=>'required',
+                'date_de_naissance'=>'required'|'date',
                 'genre'=>'required',
                
 
@@ -73,8 +73,7 @@ class UserController extends Controller
             $patient->mote_de_passe =Hash::make($request->mote_de_passe);
             $patient->genre =$request->genre ;
             $patient->save();
-             return redirect()->route('accueil')->with('success', 'message envoyee avec succès');
-           
+              return redirect()->route('admin')->with('success', 'Médecin inscrit avec succès !');
 
         }
 
@@ -89,30 +88,47 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
+    $medecins = Medecin::all();
+    return view('admin', compact('medecins'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
-    }
+ 
+    public function editMedecin($id)
+{
+    $medecin =Medecin::findOrFail($id);
+    return view('admin.editMedecin', compact('medecin'));
+}
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        //
+    $medecin =Medecin::findOrFail($id);
+    
+    $request->validate([
+        'nom' => 'required|string',
+        'prenom' => 'required|string',
+        'email' => 'required|email',
+        'horaire' => 'nullable|string',
+        'experience' => 'nullable|string',
+    ]);
+
+    $medecin->update($request->only(['nom', 'prenom', 'email', 'horaires', 'experience']));
+
+    return redirect()->route('admin.liste')->with('success', 'Médecin modifié avec succès.');
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+   
+public function destroyMedecin($id){
+    $medecin =Medecin::findOrFail($id);
+    $medecin->delete();
+
+    return redirect()->route('admin.liste')->with('success', 'Médecin supprimé avec succès.');
+}
+
 }

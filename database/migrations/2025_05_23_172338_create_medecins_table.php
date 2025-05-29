@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string("experience");
             $table->string("description")->nullable();
             $table->string("diplome");
-            $table->string("photo");
+            $table->string("photo")->nullable();
             $table->timestamps();
         });
     }

@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfilMedecinController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RendezVousController;
 use App\Http\Controllers\UserController;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +23,11 @@ Route::get('/success', [RendezVousController::class, 'success'])->name('rendezvo
 Route::get('/ajouter',[RendezVousController::class,'create'])->name('ajouter');
 // Route::get('/profil/{id}', [ProfilMedecinController::class, 'show'])->name('profil.medecin');
 
+
+
+
+
+Route::get('/admin', [UserController::class, 'showMedecins'])->name('admin');
+Route::get('/admin/{id}/edit', [UserController::class, 'editMedecin'])->name('admin.edit');
+Route::put('/admin/{id}', [UserController::class, 'updateMedecin'])->name('admin.update');
+Route::delete('/admin/{id}', [UserController::class, 'destroyMedecin'])->name('admin.destroy');
