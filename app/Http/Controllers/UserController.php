@@ -13,11 +13,11 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index() {}
-
-    /**
-     * Show the form for creating a new resource.
-     */
+    public function showMedecins()
+{
+    $medecins = Medecin::all();
+    return view('admin', compact('medecins'));
+}
     public function create()
     {
         //
@@ -31,6 +31,7 @@ class UserController extends Controller
         if ($request->has('role') && $request->role == 'medecin') {
             $request->validate([
                 'nom' => 'required|string',
+                'prenom' => 'required|string',
                 'email' => 'required|email',
                 'mote_de_passe' => 'required',
                 'ville' => 'required',
@@ -42,6 +43,7 @@ class UserController extends Controller
 
             $medcin = new Medecin();
             $medcin->nom = $request->nom;
+            $medcin->prenom = $request->prenom;
             $medcin->email = $request->email;
             $medcin->mote_de_passe =Hash::make($request->mote_de_passe);
             $medcin->spacialitee = $request->spacialitee;
@@ -52,36 +54,8 @@ class UserController extends Controller
             $medcin->save();
             return redirect()->route('accueil')->with('success', 'message envoyee avec succès');
         }
-
-        if ($request->has('role') && $request->role == 'patient'){
-             $request->validate([
-                'nom' => 'required|string',
-                'email' => 'required|email',
-                'mote_de_passe' => 'required',
-                'ville' => 'required',
-                'date_de_naissance'=>'required'|'date',
-                'genre'=>'required',
-               
-
-            ]);
-            $patient = new Patient();
-            $patient->nom = $request->nom;
-            $patient->email = $request->email;
-            $patient->ville = $request->ville;
-            $patient->date_de_naissance = $request->date_de_naissance;
-            $patient->photo =$request->photo;
-            $patient->mote_de_passe =Hash::make($request->mote_de_passe);
-            $patient->genre =$request->genre ;
-            $patient->save();
-              return redirect()->route('admin')->with('success', 'Médecin inscrit avec succès !');
-
+      
         }
-
-
-        return "machi fost if";
-
-    
-    }
 
     /**
      * Display the specified resource.
@@ -119,7 +93,7 @@ class UserController extends Controller
 
     $medecin->update($request->only(['nom', 'prenom', 'email', 'horaires', 'experience']));
 
-    return redirect()->route('admin.liste')->with('success', 'Médecin modifié avec succès.');
+    return redirect()->route('admin')->with('success', 'Médecin modifié avec succès.');
 
     }
 
@@ -128,7 +102,7 @@ public function destroyMedecin($id){
     $medecin =Medecin::findOrFail($id);
     $medecin->delete();
 
-    return redirect()->route('admin.liste')->with('success', 'Médecin supprimé avec succès.');
+    return redirect()->route('admin')->with('success', 'Médecin supprimé avec succès.');
 }
 
 }

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('medecins', function (Blueprint $table) {
             $table->id();
             $table->string("nom");
+            $table->string("prenom");
             $table->string("email");
             $table->string("mote_de_passe");
            $table->enum('spacialitee', [

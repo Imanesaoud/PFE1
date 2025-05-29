@@ -55,7 +55,7 @@
           <a href="#" class="nav-link">Connexion</a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">Inscription</a>
+          <a href="{{route('ajouter')}}" class="nav-link">Inscription</a>
         </li>
       </ul>
     </div>

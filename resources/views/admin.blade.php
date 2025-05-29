@@ -38,15 +38,15 @@
                     </td>
                     <td>
                         @if ($medecin->photo)
-                            <img src="{{ asset('storage/' . $medecin->photo) }}" alt="Photo" width="50">
+                            <img src="{{$medecin->photo}}" alt="Photo" width="50">
                         @else
                             Aucune
                         @endif
                     </td>
                     <td>
-                        <a href="{{ route('admin.medecins.edit', $medecin->id) }}" class="btn btn-sm btn-warning">Modifier</a>
+                        <a href="{{ route('admin.edit', $medecin->id) }}" class="btn btn-sm btn-warning">Modifier</a>
 
-                        <form action="{{ route('admin.medecins.destroy', $medecin->id) }}" method="POST" style="display:inline-block;">
+                        <form action="{{ route('admin.destroy', $medecin->id) }}" method="POST" style="display:inline-block;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Confirmer la suppression ?')">Supprimer</button>

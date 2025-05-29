@@ -63,13 +63,13 @@
         <input type="file" name="photo" class="form-control">
 
         <label class="mt-3">Rôle:</label>
-        <select name="role" id="role" class="form-select" required onchange="toggleMedecinFields()">
+        <select name="role" id="role" class="form-select" >
             <option value="patient">Patient</option>
             <option value="medecin">Médecin</option>
             
         </select>
 
-        <div id="medecinFields" style="display: none;">
+        <div id="medecinFields">
             <label class="mt-3">Diplôme (PDF):</label>
             <input type="file" name="diplome" class="form-control">
 
@@ -90,12 +90,4 @@
         <button type="submit" class="btn btn-primary mt-4">S'inscrire</button>
     </form>
 </div>
-
-<script>
-    function toggleMedecinFields() {
-        var role = document.getElementById("role").value;
-        var fields = document.getElementById("medecinFields");
-        fields.style.display = (role === 'medecin') ? 'block' : 'none';
-    }
-</script>
 @endsection
