@@ -30,12 +30,34 @@
                 <input type="text" name="prenom" class="form-control" required>
             </div>
         </div>
+             <div class="col-md-6">
+                <label>date de naissance :</label>
+                <input type="date" name="date_de_naissance" class="form-control" required>
+            </div>
+        </div>
+          <div class="mt-3">
+                <label>ville</label>
+                <input type="text" name="ville" class="form-control" required>
+            </div>
 
         <label class="mt-3">Email:</label>
-        <input type="email" name="email" class="form-control" required>
-
+        <input type="email" name="email" class="form-control" required><br>
+      <label for="genre">Genre :</label>
+        <div class="form-check">
+       
+  <input class="form-check-input" type="radio" value="M" id="genre" name="genre" >
+  <label class="form-check-label" for="M">
+    M
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="genre" value="F" id="genre" checked>
+  <label class="form-check-label" for="F">
+    F
+  </label>
+</div>
         <label class="mt-3">Mot de passe:</label>
-        <input type="password" name="mot_de_passe" class="form-control" required>
+        <input type="password" name="mote_de_passe" class="form-control" required>
 
         <label class="mt-3">Photo:</label>
         <input type="file" name="photo" class="form-control">
