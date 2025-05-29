@@ -14,21 +14,23 @@ return new class extends Migration
         Schema::create('medecins', function (Blueprint $table) {
             $table->id();
             $table->string("nom");
+            $table->string("prenom");
             $table->string("email");
             $table->string("mote_de_passe");
-           $table->enum('spacialitee', [
-    'Médecine Générale',
-    'Pédiatrie',
-    'Gynécologie',
-    'Cardiologie',
-    'Dermatologie',
-    'Ophtalmologie'
-]);
+            $table->enum('spacialitee', [
+                'Médecine Générale',
+                'Pédiatrie',
+                'Gynécologie',
+                'Cardiologie',
+                'Dermatologie',
+                'Ophtalmologie'
+            ]);
             $table->string("ville");
             $table->string("experience");
             $table->string("description")->nullable();
             $table->string("diplome");
             $table->string("photo")->nullable();
+            $table->enum("status", ['valider', 'encours', 'refuser'])->nullable()->default('encours');
             $table->timestamps();
         });
     }
