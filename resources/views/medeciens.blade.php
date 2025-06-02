@@ -2,6 +2,32 @@
 
 @section('content')
     <div class="container">
+        <div class="container mt-5">
+        <h2 class="text-center mb-4 text-primary"><i class="bi bi-heart-pulse"></i> Liste des Médecins</h2>
+
+        <!-- Barre de recherche -->
+        <form method="GET" action="" class="mb-4">
+          <div class="d-flex gap-2" style="margin-inline:auto">
+  <select class="form-select form-select-md rounded-2" style="max-width: 200px;">
+    <option selected>Spécialité</option>
+    <option value="1">Cardiologue</option>
+    <option value="2">Dermatologue</option>
+  </select>
+
+  <select class="form-select form-select-md rounded-2" style="max-width: 200px;">
+    <option selected>Ville</option>
+    <option value="1">Lyon</option>
+    <option value="2">Paris</option>
+  </select>
+
+  <button class="btn btn-primary">Rechercher</button>
+</div>
+
+        </form>
+
+       
+    </div>
+
         <h2 class="mb-4">Liste des Médecins</h2>
         
         <div class="row">
