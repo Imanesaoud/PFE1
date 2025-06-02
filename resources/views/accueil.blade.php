@@ -32,7 +32,7 @@
         <div>
             <h1 class="display-4 fw-bold">Prenez rendez-vous avec votre médecin</h1>
             <p class="lead mb-4">Simple, rapide et sécurisé</p>
-            <a href="{{ route('ajouter') }}" class="btn btn-primary btn-lg btn-primary-custom">Réserver un
+            <a href="{{ route('show.medeciens') }}" class="btn btn-primary btn-lg btn-primary-custom">Réserver un
                 rendez-vous</a>
         </div>
     </section>

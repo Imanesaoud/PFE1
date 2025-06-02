@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <h2 class="mb-4">Liste des Médecins</h2>
-
+        
         <div class="row">
             @forelse ($medecins as $medecin)
                 <div class="col-md-4 mb-4">
@@ -24,8 +24,8 @@
                             <p class="card-text"><strong>Expérience:</strong> {{ $medecin->experience }}</p>
 
                             @if ($medecin->diplome)
-                                <a href="{{ asset('storage/' . $medecin->diplome) }}" target="_blank"
-                                    class="btn btn-sm btn-outline-primary mt-2">Voir le diplôme</a>
+                                <a href="#" target="_blank"
+                                    class="btn btn-sm btn-outline-primary mt-2">Reserver rendez-vous</a>
                             @endif
                         </div>
                     </div>
