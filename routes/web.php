@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MedecinController;
 use App\Http\Controllers\ProfilMedecinController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RendezVousController;
@@ -37,3 +39,26 @@ Route::get('/admin/refuse/{id}', [UserController::class, 'refuseMedecin'])->name
 Route::delete('/admin/destroy/{id}', [UserController::class, 'destroyMedecin'])->name('admin.destroy');
 
 Route::get('show/medecins', [UserController::class, 'index'])->name('show.medeciens');
+Route::get('/medcin/{id}',[UserController::class ,'profilMed'])->name('voir.medcin');
+
+Route::get('/patient/ajouter/{id}', [UserController::class, 'showPatientForm'])->name('ajouter.patient');
+Route::post('/patient/store', [UserController::class, 'AjouterPatient'])->name('store.patient');
+
+Route::view('/login/medecin','loginMed')->name('login.med');
+Route::view('/login/patient','loginPatien')->name('login.patient');
+
+Route::post('/patient/login', [AuthController::class, 'loginPatient'])->name('patient.login');
+Route::post('/medecin/login', [AuthController::class, 'loginMedecin'])->name('medecin.login');
+Route::get('medecin/index',[MedecinController::class, 'index'   ])->name('medecin.index');
+
+Route::get('/medecin/valider/{id}', [MedecinController::class, 'validerRendezvous'])->name('medecin.valider.rendezvous');
+Route::get('/medecin/anuller/{id}', [MedecinController::class, 'AnnulerRendezvous'])->name('medecin.annuler.rendezvous');
+Route::delete('/medecin/supprimer/{id}', [MedecinController::class, 'SupprimerRendezvous'])->name('medecin.supprimer.rendezvous');
+
+Route::view('/mececin/profile', 'medecin.profil')->name('medecin.profil');
+Route::get('/a-propos', function () {
+    return view('about'); // Assurez-vous que le fichier est resources/views/about_us.blade.php
+})->name('about.us'); // Le nom de la route utilisé dans votre navbar
+Route::get('/contact', function () {
+    return view('contact'); // This will load the contact_us.blade.php view
+});

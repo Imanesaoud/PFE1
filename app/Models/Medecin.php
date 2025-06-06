@@ -2,10 +2,24 @@
 
 namespace App\Models;
 
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class Medecin extends Model
+class Medecin extends Authenticatable
 {
     use HasFactory;
+
+    public $table = 'medecins';
+    
+    public function getAuthPassword()
+    {
+        return $this->mot_de_passe;
+    }
+    public function patients(){
+        return $this->hasMany(Patient::class);
+    }
+
+    public function rendezvous(){
+        return $this->hasMany(Rendezvous::class);
+    }
 }

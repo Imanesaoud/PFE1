@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('rendeyzvous', function (Blueprint $table) {
             $table->id();
             $table->datetime("date_heure");
-            $table->enum("statut", ['annuler', 'confirmer']);
+            $table->enum("statut", ['annuler', 'encour', 'confirmer'])->nullable()->default('encour');
             $table->foreignId("medecin_id")->constrained("medecins");
             $table->foreignId("patient_id")->constrained("patients");
             $table->timestamps();

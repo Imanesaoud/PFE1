@@ -3,24 +3,26 @@
 @section('content')
     <div class="container">
         <div class="container mt-5">
-        <h2 class="text-center mb-4 text-primary"><i class="bi bi-heart-pulse"></i> Liste des Médecins</h2>
+        <h2 class="text-center mb-4 " style="color: #34658c;" ><i class="bi bi-heart-pulse"></i> Liste des Médecins</h2>
 
         <!-- Barre de recherche -->
-        <form method="GET" action="" class="mb-4">
+        <form method="GET" action="{{route('show.medeciens')}}" class="mb-4">
           <div class="d-flex gap-2" style="margin-inline:auto">
-  <select class="form-select form-select-md rounded-2" style="max-width: 200px;">
+  <select class="form-select form-select-md rounded-2" style="max-width: 200px;" name="spacialitee">
     <option selected>Spécialité</option>
-    <option value="1">Cardiologue</option>
-    <option value="2">Dermatologue</option>
+    @foreach($spacialitee as $spec)
+    <option value="{{$spec}}">{{$spec}}</option>
+    @endforeach
+    
   </select>
 
-  <select class="form-select form-select-md rounded-2" style="max-width: 200px;">
+  <select class="form-select form-select-md rounded-2" style="max-width: 200px;" name="ville">
     <option selected>Ville</option>
-    <option value="1">Lyon</option>
-    <option value="2">Paris</option>
-  </select>
+  @foreach($villes as $ville)
+    <option value="{{$ville}}">{{$ville}}</option>
+    @endforeach
 
-  <button class="btn btn-primary">Rechercher</button>
+  </select><button type="submit" class="btn" style="background-color: #2ecc71; color: white; border: none;">Rechercher</button>
 </div>
 
         </form>
@@ -38,21 +40,22 @@
                             <img src="{{ asset($medecin->photo) }}" class="card-img-top" alt="Photo du médecin"
                                 style="height: 250px; object-fit: cover;">
                         @else
-                            <img src="https://via.placeholder.com/300x250" class="card-img-top" alt="Image par défaut">
+                            <img src="{{asset('default.png')}}" class="card-img-top" alt="Image par défaut"  style="height: 250px; object-fit: cover;">
                         @endif
 
                         <div class="card-body">
-                            <h5 class="card-title">{{ $medecin->prenom }} {{ $medecin->nom }}</h5>
+                            <h5 class="card-title">Dr. {{ $medecin->prenom }} {{ $medecin->nom }}</h5>
                             <p class="card-text"><strong>Email:</strong> {{ $medecin->email }}</p>
                             <p class="card-text"><strong>Spécialité:</strong> {{ $medecin->spacialitee }}</p>
                             <p class="card-text"><strong>Ville:</strong> {{ $medecin->ville }}</p>
-                            <p class="card-text"><strong>Horaires:</strong> {{ $medecin->horaires }}</p>
+                            
                             <p class="card-text"><strong>Expérience:</strong> {{ $medecin->experience }}</p>
 
-                            @if ($medecin->diplome)
-                                <a href="#" target="_blank"
+                                <a href="{{route('ajouter.patient', $medecin->id)}}"
                                     class="btn btn-sm btn-outline-primary mt-2">Reserver rendez-vous</a>
-                            @endif
+                            
+                             <a href="{{route('voir.medcin',$medecin->id)}}"
+                                    class="btn btn-sm btn-outline-primary mt-2">Voir plus</a>
                         </div>
                     </div>
                 </div>
