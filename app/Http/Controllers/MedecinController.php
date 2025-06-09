@@ -52,25 +52,25 @@ class MedecinController extends Controller
     }
     public function update(Request $request)
     {
-    $validated=$request->validate([
-        'experience'=>'string',
-        'horaires'=>'string',
-        'photo'=>'file'  
-    ]);
-    if($validated){
+        $validated = $request->validate([
+            'experience' => 'string',
+            'horaires' => 'string',
+            'photo' => 'file'
+        ]);
+        if ($validated) {
+            $user = auth()->guard('medecin')->user();
+            if ($request->hasFile('photo')) {
+                $user->photo = Storage::putFile('photos', $request->photo);
+            }
 
-        $user=auth()->guard('medecin')->user();
-      if ($request->hasFile('photo')) {
-            $user->photo = Storage::put('photos', $request->photo);
+            $user->horaires = $request->horaires;
+            $user->experience = $request->experience;
+            $user->save();
+
+            return redirect()->back()->with('success', 'votre profil modifier avec success');
         }
-        $user->update($validated);
-        return redirect()->back()->with('success','votre profil modifier avec success');
-    }
-    
 
-       return redirect()->back()->with('error','votre profil non modifier ');
-    
 
+        return redirect()->back()->with('error', 'votre profil non modifier ');
     }
 }
-?>

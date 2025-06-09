@@ -10,16 +10,18 @@ class Medecin extends Authenticatable
     use HasFactory;
 
     public $table = 'medecins';
-    protected $fillable =['experience','horaires','photo'];
+    protected $fillable = ['experience', 'horaires', 'photo'];
     public function getAuthPassword()
     {
         return $this->mot_de_passe;
     }
-    public function patients(){
+    public function patients()
+    {
         return $this->hasMany(Patient::class);
     }
 
-    public function rendezvous(){
+    public function rendezvous()
+    {
         return $this->hasMany(Rendezvous::class);
     }
 }
