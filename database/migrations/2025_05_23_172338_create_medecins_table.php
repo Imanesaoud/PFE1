@@ -30,6 +30,7 @@ return new class extends Migration
             $table->string("description")->nullable();
             $table->string("diplome");
             $table->string("photo")->nullable();
+            $table->string('horaires')->nullable()->default("Lundi-Vendredi: 8h-12h et 14h-18h");
             $table->enum("status", ['valider', 'encours', 'refuser'])->nullable()->default('encours');
             $table->timestamps();
         });

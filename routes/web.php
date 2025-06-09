@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfilMedecinController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RendezVousController;
 use App\Http\Controllers\UserController;
+use App\Models\Medecin;
 use App\Models\User;
 
 /*
@@ -55,10 +56,12 @@ Route::get('/medecin/valider/{id}', [MedecinController::class, 'validerRendezvou
 Route::get('/medecin/anuller/{id}', [MedecinController::class, 'AnnulerRendezvous'])->name('medecin.annuler.rendezvous');
 Route::delete('/medecin/supprimer/{id}', [MedecinController::class, 'SupprimerRendezvous'])->name('medecin.supprimer.rendezvous');
 
-Route::view('/mececin/profile', 'medecin.profil')->name('medecin.profil');
+Route::view('/medecin/profile', 'medecin.profil')->name('medecin.profil');
 Route::get('/a-propos', function () {
     return view('about'); // Assurez-vous que le fichier est resources/views/about_us.blade.php
 })->name('about.us'); // Le nom de la route utilisé dans votre navbar
 Route::get('/contact', function () {
     return view('contact'); // This will load the contact_us.blade.php view
 });
+Route::put('/medecin/modifier',[MedecinController::class ,'update'])->name('medecin.update');
+

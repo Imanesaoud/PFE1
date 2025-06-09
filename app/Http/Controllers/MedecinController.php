@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Rendezvous;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MedecinController extends Controller
 {
@@ -48,6 +49,28 @@ class MedecinController extends Controller
         }
 
         return redirect()->back()->with('success', "Rendezvous Supprimer");
+    }
+    public function update(Request $request)
+    {
+    $validated=$request->validate([
+        'experience'=>'string',
+        'horaires'=>'string',
+        'photo'=>'file'  
+    ]);
+    if($validated){
+
+        $user=auth()->guard('medecin')->user();
+      if ($request->hasFile('photo')) {
+            $user->photo = Storage::put('photos', $request->photo);
+        }
+        $user->update($validated);
+        return redirect()->back()->with('success','votre profil modifier avec success');
+    }
+    
+
+       return redirect()->back()->with('error','votre profil non modifier ');
+    
+
     }
 }
 ?>

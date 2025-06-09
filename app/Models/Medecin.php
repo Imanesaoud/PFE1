@@ -10,7 +10,7 @@ class Medecin extends Authenticatable
     use HasFactory;
 
     public $table = 'medecins';
-    
+    protected $fillable =['experience','horaires','photo'];
     public function getAuthPassword()
     {
         return $this->mot_de_passe;
