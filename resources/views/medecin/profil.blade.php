@@ -27,7 +27,7 @@
         <div class="col-md-5">
             <div class="card border-0 shadow-sm rounded-3">
                 <div class="card-header bg-white border-0 py-3">
-                    <h3 class="fw-bold mb-0 text-primary">
+                    <h3 class="fw-bold mb-0 " >
                         <i class="fas fa-user-md me-2"></i>Informations Personnelles
                     </h3>
                 </div>
