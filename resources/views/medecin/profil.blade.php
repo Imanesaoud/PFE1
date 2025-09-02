@@ -11,25 +11,23 @@
         <div class="alert alert-danger">{{ session('danger') }}</div>
     @endif
     <div class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
-        <div class="container py-4"> {{-- Changed from container-fluid to container for better content width control --}}
+        <div class="container py-4"> 
             <div class="d-flex justify-content-between align-items-center border-bottom mb-5 pb-3"> {{-- Added border-bottom for subtle separation --}}
                 <div>
                     <h2 class="h4 text-muted mb-0">Mon Profil Médical</h2> {{-- Removed margin-bottom from h2 --}}
                 </div>
                 <div class="d-flex gap-3">
                     <a href="{{ route('medecin.index') }}" class="btn btn-outline-primary rounded-pill px-3 shadow-sm">
-                        {{-- Added shadow-sm --}}
+                      
                         <i class="fas fa-calendar-alt me-2"></i>Mes RDV
                     </a>
-                    <a href="#" class="btn btn-outline-secondary rounded-pill px-3 shadow-sm"> {{-- Added shadow-sm --}}
-                        <i class="fas fa-cog me-2"></i>Paramètres
-                    </a>
+                  
                 </div>
             </div>
 
-            <div class="row g-4 justify-content-center"> {{-- Increased gutter and centered columns --}}
-                <div class="col-lg-7 col-md-8"> {{-- Adjusted column sizing for better responsiveness --}}
-                    <div class="card rounded-4 border-0 p-3 shadow-lg"> {{-- More rounded corners, stronger shadow, added padding --}}
+            <div class="row g-4 justify-content-center"> 
+                <div class="col-lg-7 col-md-8">
+                    <div class="card rounded-4 border-0 p-3 shadow-lg"> 
                         <div class="card-header border-0 bg-white pb-3 pt-4"> {{-- Adjusted padding --}}
                             <h3 class="fw-bold text-primary fs-5 mb-0"> {{-- Adjusted font size --}}
                                 <i class="fas fa-user-md me-2"></i>Informations Personnelles
@@ -57,7 +55,7 @@
                                 </span>
                             </div>
 
-                            <div class="border-top mt-4 pt-4"> {{-- Increased top padding and margin --}}
+                            <div class="border-top mt-4 pt-4">
                                 <div class="row mb-3">
                                     <label class="col-sm-4 col-form-label text-muted fw-semibold">Nom</label>
                                     {{-- Bold label --}}

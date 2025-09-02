@@ -75,36 +75,7 @@
                 <a href="{{ route('ajouter.patient', $medecin->id) }}" class="btn btn-confirm">Confirmer rendez-vous</a>
             </div>
 
-            <!-- Tableau de bord -->
-            <div class="card card-custom p-4">
-                <h5 class="mb-4">Tableau de bord administrateur</h5>
-                <div class="row g-3">
-                    <div class="col-6">
-                        <div class="dashboard-item">
-                            <div class="dashboard-icon">👤</div>
-                            <div class="fw-bold mt-2">150 Patients</div>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="dashboard-item">
-                            <div class="dashboard-icon">📁</div>
-                            <div class="fw-bold mt-2">Gestion des comptes</div>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="dashboard-item">
-                            <div class="dashboard-icon">📊</div>
-                            <div class="fw-bold mt-2">Statistiques</div>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="dashboard-item">
-                            <div class="dashboard-icon">📈</div>
-                            <div class="fw-bold mt-2">Statistiques</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+         
 
         </div>
 

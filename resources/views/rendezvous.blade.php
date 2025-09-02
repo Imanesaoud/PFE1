@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container mt-5">
-    <h2 class="mb-4" style="color: #34658c;">Créer un compte pour un medcin</h2>
+    <h2 class="mb-4" style="color: #34658c;">Créer un compte pour un Médecin</h2>
     @if ($errors->any())
 
     <div class="alert alert-danger">

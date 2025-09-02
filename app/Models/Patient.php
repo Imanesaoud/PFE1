@@ -17,4 +17,8 @@ class Patient extends Authenticatable
     public function medecin(){
         return $this->belongsTo(Medecin::class);
     }
+
+    public function rendezvous(){
+        return $this->hasMany(Rendezvous::class);
+    }
 }

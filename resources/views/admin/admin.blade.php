@@ -2,6 +2,14 @@
 
 @section('content')
     <div class="container mt-5">
+  <div class="d-flex justify-content-end">
+    <form action="{{route('admin.deconnexion')}}" method="post">
+        @csrf 
+        <button type="submit" class="btn rounded-pill px-3 shadow-sm btn-danger">
+            <i class="fas fa-sign-out-alt me-1"></i>Déconnexion
+        </button>
+    </form>
+</div>
         <h2 class="mb-4">Liste des médecins inscrits</h2>
 
         @if (session('success'))

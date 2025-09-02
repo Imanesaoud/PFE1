@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MedecinController;
+use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ProfilMedecinController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RendezVousController;
@@ -61,7 +62,16 @@ Route::get('/a-propos', function () {
     return view('about'); // Assurez-vous que le fichier est resources/views/about_us.blade.php
 })->name('about.us'); // Le nom de la route utilisé dans votre navbar
 Route::get('/contact', function () {
-    return view('contact'); // This will load the contact_us.blade.php view
-});
+    return view('contact'); // Looks for resources/views/contact.blade.php
+})->name('contact.us');
 Route::put('/medecin/modifier',[MedecinController::class ,'update'])->name('medecin.update');
 
+Route::post('medecin/deconnexion',[AuthController::class, 'deconnexion'])->name('medecin.deconnexion');
+Route::get('patient/index' ,[PatientController::class,'index'])->name('patient.index');
+Route::post('patient/deconnexion',[AuthController::class, 'deconnexion'])->name('patient.deconnexion');
+
+Route::get('/inscription/{id}/telecharger', [PatientController::class, 'telechargerPDF'])->name('telechargerPDF');
+
+Route::post('/admin/login', [AuthController::class, 'loginAdmin'])->name('auth.admin');
+Route::view('/login/admin','admin.login')->name('admin.login');
+Route::post('admin/deconnexion',[AuthController::class, 'Admindeconnexion'])->name('admin.deconnexion');

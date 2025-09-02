@@ -42,9 +42,18 @@ return [
         ],
 
         'medecin' => [
-        'driver' => 'session',
-        'provider' => 'medecins',
-    ],
+            'driver' => 'session',
+            'provider' => 'medecins',
+        ],
+        
+        'patient' => [
+            'driver' => 'session',
+            'provider' => 'patients',
+        ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
     ],
 
     /*
@@ -71,9 +80,19 @@ return [
         ],
 
         'medecins' => [
-        'driver' => 'eloquent',
-        'model' => App\Models\Medecin::class,
-    ],
+            'driver' => 'eloquent',
+            'model' => App\Models\Medecin::class,
+        ],
+        
+        'patients' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Patient::class,
+        ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
+        ],
+
 
         // 'users' => [
         //     'driver' => 'database',

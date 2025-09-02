@@ -242,9 +242,9 @@
             </p>
             <div class="row g-4">
                 <div class="col-md-4">
-                    <div class="benefit-card"> {{-- Re-using benefit-card for consistent styling --}}
+                    <div class="benefit-card">
                         <div class="icon">
-                            <i class="fas fa-search-dollar"></i> {{-- Updated icon --}}
+                            <i class="fas fa-search-dollar"></i> 
                         </div>
                         <h3>1. Recherchez</h3>
                         <p>Parcourez les profils de nos professionnels de santé qualifiés.</p>
@@ -253,7 +253,7 @@
                 <div class="col-md-4">
                     <div class="benefit-card">
                         <div class="icon">
-                            <i class="fas fa-calendar-check"></i> {{-- Updated icon --}}
+                            <i class="fas fa-calendar-check"></i> 
                         </div>
                         <h3>2. Réservez</h3>
                         <p>Choisissez parmi les disponibilités en temps réel et confirmez votre créneau.</p>

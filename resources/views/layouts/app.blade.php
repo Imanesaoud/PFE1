@@ -83,7 +83,7 @@
                         <a href="{{ route('show.medeciens') }}" class="nav-link"><i class="fas fa-user-md me-1"></i>Les Profils</a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link"><i class="fas fa-envelope me-1"></i>Contacter nous</a>
+                        <a href="{{ route('contact.us') }}" class="nav-link"><i class="fas fa-envelope me-1"></i>Contacter nous</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -91,10 +91,14 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li>
-                                <a class="dropdown-item" href="{{ route('login.med') }}">Médecin</a>
+                                <a class="dropdown-item" href="{{ auth()->guard('medecin')->user() ? route('medecin.index'): route('login.med') }}">Médecin</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="{{ route('login.patient') }}">Patient</a>
+                                <a class="dropdown-item" href="{{ auth()->guard('patient')->user() ? route('patient.index'):route('login.patient') }}">Patient</a>
+                            </li>
+                            <li>
+                            <a class="dropdown-item" href="{{ auth()->guard('admin')->user() ? route('admin'):route('admin.login') }}">Admin</a>
+
                             </li>
                         </ul>
                     </li>

@@ -30,7 +30,7 @@
        
     </div>
 
-        <h2 class="mb-4">Liste des Médecins</h2>
+        <h2 class="mb-4">Liste des Médecins Disponible</h2>
         
         <div class="row">
             @forelse ($medecins as $medecin)

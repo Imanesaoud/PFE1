@@ -1,8 +1,39 @@
 @extends('layouts.app')
 
 @section('content')
+<style>.custom-green-button {
+    background-color: #2ecc71;
+    border-color: #2ecc71;
+    color: white; /* Pour le texte du bouton */
+    /* Si vous utilisez Bootstrap et voulez surcharger des styles spécifiques */
+    /* C'est souvent une bonne idée d'utiliser !important si les styles Bootstrap sont très spécifiques */
+    /* ou si vous avez des sélecteurs plus forts */
+}
+
+.custom-green-button:hover {
+    background-color: #27ae60; /* Une couleur légèrement plus foncée au survol */
+    border-color: #27ae60;
+    color: white;
+}
+
+.custom-green-button:active {
+    background-color: #2ecc71; /* Assure la même couleur active */
+    border-color: #2ecc71;
+}</style>
 <div class="container mt-5">
-    <h2>bienvenue a votre Profil</h2>
+       <div class="d-flex justify-content-between gap-3 mb-4">
+         <h2>bienvenue a votre Profil</h2>
+<div class="d-flex gap-3">
+<a href="{{ route('medecin.profil') }}" class="btn rounded-pill px-3 shadow-sm custom-green-button">
+    <i class="fas fa-user-md me-1"></i>Modifier mon profil</a>
+<form action="{{route('medecin.deconnexion')}}" method="post">
+    @csrf 
+    <button type="submit" class="btn rounded-pill px-3 shadow-sm btn-danger"><i class="fas fa-sign-out-alt me-1"></i>Déconnexion</button>
+</form>
+</div>
+                  
+</div>
+   
     {{-- @dd($listR) --}}
     <div class="card">
         @if (session('success'))

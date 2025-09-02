@@ -46,38 +46,46 @@ class UserController extends Controller
 
     public function AjouterPatient(Request $request)
     {
-        $request->validate([
-            'nom' => 'required|string',
-            'prenom' => 'required|string',
-            'cin' => 'required|string',
-            'email' => 'required|email|unique:patients,email',
-            'mote_de_passe' => 'required',
-            'ville' => 'required',
-            'photo' => 'file|mimes:jpg,png,jpeg,webp',
-            'genre' => 'required|in:H,F'
-        ]);
+        if(!auth()->guard('patient')->user()){
+            $request->validate([
+                'nom' => 'required|string',
+                'prenom' => 'required|string',
+                'cin' => 'required|string',
+                'email' => 'required|email|unique:patients,email',
+                'mote_de_passe' => 'required',
+                'ville' => 'required',
+                'photo' => 'file|mimes:jpg,png,jpeg,webp',
+                'genre' => 'required|in:H,F'
+            ]);
 
-        $patient = new Patient();
+            $patient = new Patient();
+    
+            if ($request->hasFile('photo')) {
+                $patient->photo = Storage::put('photos', $request->photo);
+            }
+    
+            $patient->nom = $request->nom;
+            $patient->prenom = $request->prenom;
+            $patient->cin = $request->cin;
+            $patient->email = $request->email;
+            $patient->mote_de_passe = Hash::make($request->mote_de_passe);
+            $patient->date_de_naissance = $request->date_de_naissance;
+            $patient->ville = $request->ville;
+            $patient->genre = $request->genre;
+            $patient->save();
 
-        if ($request->hasFile('photo')) {
-            $patient->photo = Storage::put('photos', $request->photo);
+            DB::table('rendeyzvous')->insert([
+                'date_heure' => now(),
+                'patient_id' => $patient->id,
+                'medecin_id' => $request->medecin_id
+            ]);
+        }else{
+            DB::table('rendeyzvous')->insert([
+                'date_heure' => now(),
+                'patient_id' => auth()->guard('patient')->user()->id,
+                'medecin_id' => $request->medecin_id
+            ]);
         }
-
-        $patient->nom = $request->nom;
-        $patient->prenom = $request->prenom;
-        $patient->cin = $request->cin;
-        $patient->email = $request->email;
-        $patient->mote_de_passe = Hash::make($request->mote_de_passe);
-        $patient->date_de_naissance = $request->date_de_naissance;
-        $patient->ville = $request->ville;
-        $patient->genre = $request->genre;
-        $patient->save();
-
-        DB::table('rendeyzvous')->insert([
-            'date_heure' => now(),
-            'patient_id' => $patient->id,
-            'medecin_id' => $request->medecin_id
-        ]);
         
         return redirect()->route('accueil')->with('success', 'message envoyee avec succès');
     }
@@ -159,9 +167,6 @@ class UserController extends Controller
         return redirect()->back()->with('danger', 'Médecin Refusé avec succès.');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
         $medecin = Medecin::findOrFail($id);
